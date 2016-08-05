@@ -29,6 +29,7 @@ gem 'bcrypt', '3.1.9'
 gem 'faker', '1.4.2'
 gem 'will_paginate', '3.0.7'
 
+gem 'coffee-script-source', '1.8.0' 
 # Use Unicorn as the app server
 # gem 'unicorn'
 
