@@ -4,12 +4,17 @@
   <title>MyBank</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'bootstrap/js/bootstrap.min', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'bootstrap/css/bootstrap.min', :media => 'all' %>
+  <%= stylesheet_link_tag 'custom', :media => 'all' %>
   <%= render 'layouts/shim' %>
 </head>
 <body>
+	<%= render 'layouts/header' %>
 
-<%= yield %>
+	<%= yield %>
 
+	<%= render 'layouts/footer' %>
 </body>
 </html>

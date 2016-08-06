@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  get 'pages/home' => 'pages#home'
+  get 'customers/new'
 
-  get 'pages/help' => 'pages#help'
+  get 'users/new'
+
+  root 'pages#home'
+
+  get 'help' => 'pages#help'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
