@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MyBank | <%= @title %></title>
+  <title><%= @title %> <%= " " %>| MyBank</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'bootstrap/js/bootstrap.min', 'data-turbolinks-track' => true %>
@@ -13,13 +13,14 @@
 <body>
 	<%= render 'layouts/header' %>
 	<div class="container">
-    <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-    <% end %>
+	    <% flash.each do |message_type, message| %>
+	      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+	    <% end %>
 
-	<%= yield %>
+		<%= yield %>
 
-	<%= render 'layouts/footer' %>
-	<%= debug(params) if Rails.env.development? %>
+		<%= render 'layouts/footer' %>
+		<%= debug(params) if Rails.env.development? %>
+	</div>
 </body>
 </html>

@@ -1,0 +1,9 @@
+<li>
+	<%= customer.email %>
+	<%= link_to customer.first_name, customer %>
+	<%= link_to customer.last_name, customer %>
+	<% if !current_customer?(customer) %>
+    | <%= link_to "delete", customer, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  	<% end %>
+</li>

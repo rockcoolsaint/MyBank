@@ -1,10 +1,11 @@
 class CustomersController < ApplicationController
   def index
-  	
+  	@customers = Customer.paginate(page: params[:page])
   end
 
   def show
-  	
+    @title = "Customer Profile"
+  	@customer = Customer.find(params[:id])
   end
 
   def new
@@ -24,15 +25,24 @@ class CustomersController < ApplicationController
   end
 
   def edit
-  	
+  	@customer = Customer.find(params[:id])
   end
 
   def update
-  	
+  	@customer = Customer.find(params[:id])
+    if @customer.update_attributes(user_params)
+      # Handle a successful update
+      flash[:success] = "Profile updated"
+      redirect_to @customer
+    else
+      render 'edit'
+    end
   end
 
-  def delete
-  	
+  def destroy
+  	Customer.find(params[:id]).destroy
+    flash[:success] = "Customer deleted"
+    redirect_to customers_url
   end
 
   private
@@ -40,5 +50,4 @@ class CustomersController < ApplicationController
   	def user_params
   		params.require(:customer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   	end
-
 end
