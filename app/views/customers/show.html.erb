@@ -2,3 +2,37 @@
 <div class="">
 	<p>The following are your MyBank accounts</p>
 </div>
+
+<div class="row">
+	<div class="col-md-3">
+		<p>Create new Account</p>
+
+		<%= form_for(@account) do |f| %>
+			<%= f.label :acc_type, class: "radiobutton inline" %>
+				<%= f.radio_button :acc_type, "savings", class: "inline" %><span>Savings</span>
+				<%= f.radio_button :acc_type, "current", class: "inline" %><span>Current</span>
+			<br>
+			
+			<%= f.label :acc_balance %>
+			<%= f.number_field :acc_balance, value: 0, class: "form-control" %>
+
+			<%= f.submit "Create Account", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+	<div class="col-md-9">
+	    <% if @customer.accounts.any? %>
+	      <h3>Accounts (<%= @customer.accounts.count %>)</h3>
+	      <ul class="microposts">
+	        <% @accounts.each do |account| %>
+	        	<li>
+	        		<%= account.acc_num %>
+	        		<%= account.acc_type %> account
+	        		&nbsp;&nbsp;&nbsp;&nbsp;
+	        		Account Balance: N<%= account.acc_balance %>
+	        	</li>
+	        <% end %>
+	      </ul>
+	      <% #will_paginate @accounts %>
+	    <% end %>
+	</div>
+</div>

@@ -18,7 +18,16 @@ module SessionsHelper
 		customer == current_customer
 	end
 
+	def customer
+		@customer = Customer.find_by(id: session[:customer])
+	end
+
 	def logged_in?
 		!current_customer.nil?
+	end
+
+	# Stores the url to be accessed.
+	def store_location
+		session[:forwarding_url] = request.original_url if request.get?
 	end
 end

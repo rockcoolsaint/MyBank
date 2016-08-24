@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805194434) do
+ActiveRecord::Schema.define(version: 20160818204437) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "acc_num"
+    t.string   "acc_type"
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "acc_balance"
+  end
+
+  add_index "accounts", ["acc_num"], name: "index_accounts_on_acc_num", unique: true
+  add_index "accounts", ["customer_id"], name: "index_accounts_on_customer_id"
 
   create_table "customers", force: :cascade do |t|
     t.string   "first_name"
@@ -20,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160805194434) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "admin"
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true
