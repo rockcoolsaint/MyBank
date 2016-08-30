@@ -1,0 +1,35 @@
+<h1>Account Transaction</h1>
+<p class="center"><%= current_customer.first_name %> <%= current_customer.last_name %>
+	| <span>Account Number<strong>: <%= @account.acc_num %></strong></span></p>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<ul class="nav nav-tabs ">
+			<li class="active"><a href="#withdraw" data-toggle="tab">Withdrawal</a></li>
+			<% if current_customer.admin? %>
+            	<li><a href="#deposit" data-toggle="tab">Deposit</a></li>
+            <% end %>
+        </ul>
+        <div class="tab-content">
+			<div class="tab-pane active" id="withdraw">
+				<%= form_for(@account) do |f| %>
+					<%= f.label :amount %>
+					<%= f.number_field :amount, value: 0, class: "form-control" %>
+					<%= f.submit "Withdraw", class: "btn btn-primary" %>
+				<% end %>
+				Account balance N<%= @account.acc_balance %>
+			</div>
+			<% if current_customer.admin? %>
+				<div class="tab-pane" id="deposit">
+					<%= form_for(@account) do |f| %>
+						<%= f.label :amount %>
+						<%= f.number_field :amount, value: 0, class: "form-control" %>
+						<%= f.submit "Deposit", class: "btn btn-primary" %>
+					<% end %>
+					Account balance N<%= @account.acc_balance %>
+				</div>
+			<% end %>
+		</div>
+		<p>Back to <%= link_to "My Accounts", customer_path(@current_customer) %></P>
+	</div>
+</div>

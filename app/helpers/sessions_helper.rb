@@ -10,8 +10,22 @@ module SessionsHelper
 		@current_customer = nil
 	end
 
+	# remembers in a persistent session
+	def remember(customer)
+		cookies.permanent.signed[:customer_id] = customer.id 
+	end
+
+	# returns the current user if any
 	def current_customer
-		@current_customer ||= Customer.find_by(id: session[:customer_id])
+		if session[:customer_id]
+			@current_customer ||= Customer.find_by(id: session[:customer_id])
+		elsif cookies.signed[:customer_id]
+			customer = Customer.find_by(id: cookies.signed[:customer_id])
+			if customer
+				log_in customer
+				@current_customer = customer
+			end
+		end
 	end
 
 	def current_customer?(customer)

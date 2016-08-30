@@ -60,7 +60,7 @@ class CustomersController < ApplicationController
 
     def correct_customer
       @customer = Customer.find(params[:id])
-      redirect_to unless current_customer?(@customer)
+      redirect_to root_path unless current_customer?(@customer)
     end
 
     def admin_user

@@ -25,7 +25,7 @@
 	      <ul class="microposts">
 	        <% @accounts.each do |account| %>
 	        	<li>
-	        		<%= account.acc_num %>
+	        		<%= link_to account.acc_num, edit_account_path(account) %>
 	        		<%= account.acc_type %> account
 	        		&nbsp;&nbsp;&nbsp;&nbsp;
 	        		Account Balance: N<%= account.acc_balance %>

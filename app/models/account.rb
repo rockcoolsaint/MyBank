@@ -1,7 +1,6 @@
 class Account < ActiveRecord::Base
   belongs_to :customer
 
-  #validates :acc_num, presence: true
   validates :acc_type, presence: true
   validates :acc_balance, presence: true
 
@@ -9,6 +8,6 @@ class Account < ActiveRecord::Base
 
   private
   	def generate_account_number
-  		self.acc_num = PerfectRandom::rand.to_s
+  		self.acc_num = PerfectRandom::rand.to_s if new_record?
   	end
 end
