@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_customer, only: [:edit, :update]
+  before_action :correct_customer, only: [:show, :edit, :update]
   before_action :admin_user, only: :destroy
 
   def index
@@ -12,7 +12,8 @@ class CustomersController < ApplicationController
   	@customer = Customer.find_by(id: params[:id])
     session[:customer] = @customer.id
     @account = @customer.accounts.build
-    @accounts = @customer.accounts.where(Customer_id: session[:customer])
+    #@accounts = @customer.accounts.where(Customer_id: session[:customer])
+    @accounts = @customer.accounts.paginate(page: params[:page])
   end
 
   def new
@@ -61,17 +62,5 @@ class CustomersController < ApplicationController
     def correct_customer
       @customer = Customer.find(params[:id])
       redirect_to root_path unless current_customer?(@customer)
-    end
-
-    def admin_user
-      
-    end
-
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
     end
 end

@@ -1,0 +1,45 @@
+<h1>All accounts</h1>
+<div class="row">
+	<div class="col-md-9 col-md-offset-3">
+	    
+	      <h3>Rails Bank Accounts</h3>
+	      <ul class="accounts">
+	      	<table class="table table-striped table-bordered">
+	      		<thead>
+		            <tr>
+		              <th>Account Name</th>
+		              <th>Account Email</th>
+		              <th>Account Number</th>
+		              <th>Type</th>
+		              <th>Account Balance</th>
+		             </tr>
+		        </thead>
+	        	<% @accounts.each do |account| %>
+		            <tbody>
+		            	<tr>
+		            		<li>
+		            			<td>
+		        					<%= link_to account.customer.first_name, edit_account_path(account) %> <%=link_to account.customer.last_name%>
+		        				</td>
+		        				<td>
+		        					<%= link_to account.customer.email, edit_account_path(account)%>
+		        				</td>
+						        <td>
+						        	<%= link_to account.acc_num, edit_account_path(account) %>
+						        </td>
+						        <td>
+						        	<%= link_to account.acc_type, edit_account_path(account) %>
+						        </td>
+						        <td>
+						        	N<%= link_to account.acc_balance, edit_account_path(account) %>
+						        </td>
+		        			</li>
+		        		</tr>	
+	        		</tbody>
+	        	<% end %>
+	        </table>
+	      </ul>
+	      <% #will_paginate @accounts %>
+	    
+	</div>
+</div>

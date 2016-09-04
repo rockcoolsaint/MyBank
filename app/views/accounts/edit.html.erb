@@ -6,9 +6,9 @@
 	<div class="col-md-6 col-md-offset-3">
 		<ul class="nav nav-tabs ">
 			<li class="active"><a href="#withdraw" data-toggle="tab">Withdrawal</a></li>
-			<% if current_customer.admin? %>
+			<% #if current_customer.admin? %>
             	<li><a href="#deposit" data-toggle="tab">Deposit</a></li>
-            <% end %>
+            <% #end %>
         </ul>
         <div class="tab-content">
 			<div class="tab-pane active" id="withdraw">
@@ -19,7 +19,7 @@
 				<% end %>
 				Account balance N<%= @account.acc_balance %>
 			</div>
-			<% if current_customer.admin? %>
+			<% #if current_customer.admin? %>
 				<div class="tab-pane" id="deposit">
 					<%= form_for(@account) do |f| %>
 						<%= f.label :amount %>
@@ -28,7 +28,7 @@
 					<% end %>
 					Account balance N<%= @account.acc_balance %>
 				</div>
-			<% end %>
+			<% #end %>
 		</div>
 		<p>Back to <%= link_to "My Accounts", customer_path(@current_customer) %></P>
 	</div>

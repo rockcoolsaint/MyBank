@@ -32,9 +32,9 @@ module SessionsHelper
 		customer == current_customer
 	end
 
-	def customer
-		@customer = Customer.find_by(id: session[:customer])
-	end
+	#def customer
+	#	@customer = Customer.find_by(id: session[:customer])
+	#end
 
 	def logged_in?
 		!current_customer.nil?
