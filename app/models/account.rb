@@ -8,6 +8,7 @@ class Account < ActiveRecord::Base
 
   private
   	def generate_account_number
-  		self.acc_num = PerfectRandom::rand.to_s if new_record?
+  		#self.acc_num = PerfectRandom::rand.to_s if new_record?
+  		self.acc_num = Time.now.to_i.to_s if new_record?
   	end
 end
