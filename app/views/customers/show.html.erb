@@ -9,12 +9,12 @@
 			<p>Create new Account</p>
 
 			<%= form_for(@account) do |f| %>
-				<%= f.label :acc_type, class: "radiobutton inline" %>
-					<%= f.radio_button :acc_type, "savings", class: "inline" %><span>Savings</span>
-					<%= f.radio_button :acc_type, "current", class: "inline" %><span>Current</span>
+				<%= f.label :acc_type, class: "radiobutton inline" %>(you must select an account type. Savings/Current)
+					<%= f.radio_button :acc_type, "savings", class: "" %><span>Savings</span>
+					<%= f.radio_button :acc_type, "current", class: "" %><span>Current</span>
 				<br>
 				
-				<%= f.label :acc_balance %>
+				<%= f.label :Deposit %> (you can depisit any amount)
 				<%= f.number_field :acc_balance, value: 0, class: "form-control" %>
 
 				<%= f.submit "Create Account", class: "btn btn-primary" %>
